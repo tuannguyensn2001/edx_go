@@ -1,6 +1,9 @@
 package chaptermodel
 
-import "time"
+import (
+	"gorm.io/gorm"
+	"time"
+)
 
 type Chapter struct {
 	ID        int        `json:"id" gorm:"column:id"`
@@ -9,4 +12,5 @@ type Chapter struct {
 	CourseId  int        `json:"courseId" gorm:"column:course_id"`
 	CreatedAt *time.Time `gorm:"column:created_at;" json:"created_at"`
 	UpdatedAt *time.Time `gorm:"column:updated_at" json:"updated_at"`
+	DeletedAT gorm.DeletedAt
 }

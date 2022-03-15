@@ -5,16 +5,16 @@ import (
 	chaptermodel "edx_go/module/chapter/model"
 )
 
-type store interface {
+type chapterCreateStore interface {
 	Create(ctx context.Context, data *chaptermodel.Chapter) error
 	CountByCourseId(ctx context.Context, courseId int) (int64, error)
 }
 
 type ChapterCreateBiz struct {
-	store store
+	store chapterCreateStore
 }
 
-func NewChapterCreateBiz(store store) *ChapterCreateBiz {
+func NewChapterCreateBiz(store chapterCreateStore) *ChapterCreateBiz {
 	return &ChapterCreateBiz{
 		store: store,
 	}
