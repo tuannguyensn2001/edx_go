@@ -12,7 +12,9 @@ import (
 
 func main() {
 
-	dsn := "root:@tcp(127.0.0.1:3306)/edx?charset=utf8mb4&parseTime=True&loc=Local"
+	//dsn := "root:@tcp(127.0.0.1:3306)/edx?charset=utf8mb4&parseTime=True&loc=Local"
+
+	dsn := "admin:java2001@tcp(database-1.ckh8wqhaxqge.us-east-1.rds.amazonaws.com:3306)/edx?charset=utf8&parseTime=True&loc=Local"
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 

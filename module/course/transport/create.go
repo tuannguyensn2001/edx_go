@@ -22,7 +22,7 @@ func CreateCourse(appCtx app_ctx.AppContext) func(ctx *gin.Context) {
 
 		course.UserId = userId.(int)
 
-		store := coursestorage.NewSQLStore(appCtx.GetDBConnection())
+		store := coursestorage.NewSQLStore(appCtx.GetDBConnection()) //repository
 
 		biz := authbusiness.NewCreateCourseBiz(store)
 
@@ -33,6 +33,6 @@ func CreateCourse(appCtx app_ctx.AppContext) func(ctx *gin.Context) {
 		}
 
 		ctx.JSON(http.StatusOK, common.NewSuccessResponse("Thêm mới khóa học thành công", result))
-
+		//crud create read update delete
 	}
 }
