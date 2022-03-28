@@ -6,6 +6,7 @@ import (
 	authtransport "edx_go/module/auth/transport"
 	chaptertransport "edx_go/module/chapter/transport"
 	coursetransport "edx_go/module/course/transport"
+	lessontransport "edx_go/module/lesson/transport"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,5 +22,8 @@ func DeclareRoute(r *gin.Engine, appCtx app_ctx.AppContext) {
 		v1.GET("/chapters/course/:id", middleware.AuthMiddleware(appCtx), chaptertransport.GetChapterByCourse(appCtx))
 		v1.PUT("/chapters/:id", middleware.AuthMiddleware(appCtx), chaptertransport.ChapterUpdate(appCtx))
 		v1.DELETE("/chapters/:id", middleware.AuthMiddleware(appCtx), chaptertransport.ChapterDelete(appCtx))
+
+		v1.POST("/lessons", middleware.AuthMiddleware(appCtx), lessontransport.LessonCreate(appCtx))
+		v1.GET("/lessons/chapter/:id", middleware.AuthMiddleware(appCtx), lessontransport.LessonGetByChapterId(appCtx))
 	}
 }
