@@ -17,6 +17,7 @@ func DeclareRoute(r *gin.Engine, appCtx app_ctx.AppContext) {
 
 		v1.GET("/courses", middleware.AuthMiddleware(appCtx), coursetransport.GetMyCourses(appCtx))
 		v1.POST("/courses", middleware.AuthMiddleware(appCtx), coursetransport.CreateCourse(appCtx))
+		v1.GET("/courses/lesson/:id", coursetransport.CourseGetByLesson(appCtx))
 
 		v1.POST("/chapters", chaptertransport.CreateChapter(appCtx))
 		v1.GET("/chapters/course/:id", middleware.AuthMiddleware(appCtx), chaptertransport.GetChapterByCourse(appCtx))
@@ -25,5 +26,6 @@ func DeclareRoute(r *gin.Engine, appCtx app_ctx.AppContext) {
 
 		v1.POST("/lessons", middleware.AuthMiddleware(appCtx), lessontransport.LessonCreate(appCtx))
 		v1.GET("/lessons/chapter/:id", middleware.AuthMiddleware(appCtx), lessontransport.LessonGetByChapterId(appCtx))
+		v1.PUT("/lessons/:id", middleware.AuthMiddleware(appCtx), lessontransport.LessonUpdate(appCtx))
 	}
 }
