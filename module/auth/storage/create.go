@@ -3,13 +3,20 @@ package authstorage
 import (
 	"context"
 	authmodel "edx_go/module/auth/model"
+	hashprovider "edx_go/providers/hash"
 )
 
 func (store *sqlStore) Create(ctx context.Context, data *authmodel.UserRegister) (*authmodel.User, error) {
 	db := store.db
 
+	hashPassword, err := hashprovider.Hash(data.Password)
+
+	if err != nil {
+		return nil, err
+	}
+
 	user := authmodel.User{
-		Password: data.Password,
+		Password: hashPassword,
 		Email:    data.Email,
 		Username: data.Username,
 	}
