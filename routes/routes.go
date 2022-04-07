@@ -4,6 +4,7 @@ import (
 	app_ctx "edx_go/component"
 	"edx_go/middleware"
 	authtransport "edx_go/module/auth/transport"
+	carttransport "edx_go/module/cart/transport"
 	chaptertransport "edx_go/module/chapter/transport"
 	coursetransport "edx_go/module/course/transport"
 	lessontransport "edx_go/module/lesson/transport"
@@ -15,6 +16,7 @@ func DeclareRoute(r *gin.Engine, appCtx app_ctx.AppContext) {
 	{
 		v1.POST("/auth/register", authtransport.Register(appCtx))
 		v1.POST("/auth/login", authtransport.Login(appCtx))
+		v1.GET("/auth/me", middleware.AuthMiddleware(appCtx), authtransport.GetMe(appCtx))
 
 		v1.GET("/courses", middleware.AuthMiddleware(appCtx), coursetransport.GetMyCourses(appCtx))
 		v1.POST("/courses", middleware.AuthMiddleware(appCtx), coursetransport.CreateCourse(appCtx))
@@ -30,5 +32,9 @@ func DeclareRoute(r *gin.Engine, appCtx app_ctx.AppContext) {
 		v1.PUT("/lessons/:id", middleware.AuthMiddleware(appCtx), lessontransport.LessonUpdate(appCtx))
 		v1.PUT("/lessons/order", middleware.AuthMiddleware(appCtx), lessontransport.UpdateOrder(appCtx))
 		v1.GET("/lessons/:id", middleware.AuthMiddleware(appCtx), lessontransport.GetById(appCtx))
+
+		v1.POST("/carts", middleware.AuthMiddleware(appCtx), carttransport.AddToCart(appCtx))
+		v1.DELETE("/carts", middleware.AuthMiddleware(appCtx), carttransport.DeleteInCart(appCtx))
+
 	}
 }
