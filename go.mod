@@ -1,6 +1,6 @@
 module edx_go
 
-go 1.14
+go 1.17
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
@@ -24,7 +24,7 @@ require (
 	github.com/jackc/pgtype v1.10.0 // indirect
 	github.com/jackc/pgx/v4 v4.15.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
-	github.com/jinzhu/now v1.1.4 // indirect
+	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/joho/godotenv v1.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
@@ -39,5 +39,5 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gorm.io/driver/mysql v1.3.2 // indirect
 	gorm.io/driver/postgres v1.3.1 // indirect
-	gorm.io/gorm v1.23.2 // indirect
+	gorm.io/gorm v1.23.4 // indirect
 )
