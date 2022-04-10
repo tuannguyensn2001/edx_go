@@ -18,9 +18,7 @@ func main() {
 		log.Fatalln("env loaded err")
 	}
 
-	//dsn := os.Getenv("DATABASE")
-
-	dsn := "admin:java2001@tcp(database-1.ckh8wqhaxqge.us-east-1.rds.amazonaws.com:3306)/edx?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := os.Getenv("DATABASE")
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
