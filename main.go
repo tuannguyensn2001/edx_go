@@ -14,9 +14,7 @@ import (
 
 func main() {
 
-	if err := godotenv.Load(); err != nil {
-		log.Fatalln("env loaded err", err)
-	}
+	godotenv.Load()
 
 	dsn := os.Getenv("DATABASE")
 
