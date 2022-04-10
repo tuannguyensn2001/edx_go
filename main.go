@@ -46,7 +46,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = r.Run(":5000")
+	port := os.Getenv("PORT")
+
+	err = r.Run(":" + port)
 	if err != nil {
 		return
 	}
