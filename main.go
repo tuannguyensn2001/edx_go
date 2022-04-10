@@ -1,37 +1,26 @@
 package main
 
-import (
-	app_ctx "edx_go/component"
-	"edx_go/middleware"
-	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
-	"log"
-	"os"
-)
-
 func main() {
 
-	if err := godotenv.Load(); err != nil {
-		log.Fatalln("env loaded err")
-	}
-
-	dsn := os.Getenv("DATABASE")
-
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-
-	if err != nil {
-		log.Fatalln("DB connect failed", err)
-	}
-
-	appCtx := app_ctx.NewAppContext(db)
+	//if err := godotenv.Load(); err != nil {
+	//	log.Fatalln("env loaded err")
+	//}
 	//
-	r := gin.Default()
+	//dsn := os.Getenv("DATABASE")
+	//
+	//db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	//
+	//if err != nil {
+	//	log.Fatalln("DB connect failed", err)
+	//}
+
+	//appCtx := app_ctx.NewAppContext(db)
+	////
+	//r := gin.Default()
 	//
 	//r.Use(middleware.CORSMiddleware())
 	//
-	r.Use(middleware.Recover(appCtx))
+	//r.Use(middleware.Recover(appCtx))
 	//
 	//r.StaticFile("demo", "./demo.html")
 	//
