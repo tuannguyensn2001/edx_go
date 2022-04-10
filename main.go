@@ -3,7 +3,6 @@ package main
 import (
 	app_ctx "edx_go/component"
 	"edx_go/middleware"
-	"edx_go/socket"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
@@ -27,28 +26,28 @@ func main() {
 	}
 
 	appCtx := app_ctx.NewAppContext(db)
-
+	//
 	r := gin.Default()
-
-	r.Use(middleware.CORSMiddleware())
-
+	//
+	//r.Use(middleware.CORSMiddleware())
+	//
 	r.Use(middleware.Recover(appCtx))
-
-	r.StaticFile("demo", "./demo.html")
-
-	//routes.DeclareRoute(r, appCtx)
-
-	engine := socket.NewEngine()
-
-	err = engine.Run(appCtx, r)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	port := os.Getenv("PORT")
-
-	err = r.Run(":" + port)
-	if err != nil {
-		return
-	}
+	//
+	//r.StaticFile("demo", "./demo.html")
+	//
+	////routes.DeclareRoute(r, appCtx)
+	//
+	//engine := socket.NewEngine()
+	//
+	//err = engine.Run(appCtx, r)
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//
+	//port := os.Getenv("PORT")
+	//
+	//err = r.Run(":" + port)
+	//if err != nil {
+	//	return
+	//}
 }
