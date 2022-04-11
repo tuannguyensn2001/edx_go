@@ -4,7 +4,8 @@ import (
 	app_ctx "edx_go/component"
 	"edx_go/middleware"
 	"edx_go/routes"
-	"edx_go/socket"
+	"edx_go/websocket"
+
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
@@ -25,7 +26,8 @@ func main() {
 		log.Fatalln("DB connect failed", err)
 	}
 	//
-	appCtx := app_ctx.NewAppContext(db)
+	hub := websocket.NewHub()
+	appCtx := app_ctx.NewAppContext(db, hub)
 	//
 	r := gin.Default()
 
@@ -35,9 +37,6 @@ func main() {
 
 	routes.DeclareRoute(r, appCtx)
 
-	engine := socket.NewEngine()
-
-	err = engine.Run(appCtx, r)
 	if err != nil {
 		log.Fatal(err)
 	}
